@@ -14,6 +14,7 @@ import com.solairis.yourcarslife.service.VehicleService;
 import com.solairis.yourcarslife.service.exception.VehicleServiceException;
 import java.util.List;
 import java.util.Set;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -24,6 +25,7 @@ public class VehicleServiceImpl implements VehicleService {
 	private VehicleDao vehicleDao;
 
 	@Override
+	@Transactional
 	public Vehicle getVehicleByNameAndUser(String vehicleName, long userId) throws VehicleServiceException {
 		Vehicle vehicle = null;
 		VehicleInputData inputData = new VehicleInputData();

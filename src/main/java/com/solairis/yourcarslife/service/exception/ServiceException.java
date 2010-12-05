@@ -9,7 +9,7 @@ package com.solairis.yourcarslife.service.exception;
  *
  * @author josh
  */
-public class ServiceException extends Exception {
+public class ServiceException extends RuntimeException {
 
 	public ServiceException(String message) {
 		super(message);
