@@ -38,10 +38,9 @@ public class VehicleServiceImpl implements VehicleService {
 
 		try {
 			List<Vehicle> vehicles = this.vehicleDao.getVehicles(inputData);
-			if (vehicles.size() > 1) {
-				throw new VehicleServiceException("More than 1 vehicle returned");
+			if (vehicles.size() == 1) {
+				vehicle = vehicles.get(0);
 			}
-			vehicle = vehicles.get(0);
 		} catch (VehicleDaoException e) {
 			throw new VehicleServiceException(e);
 		}
