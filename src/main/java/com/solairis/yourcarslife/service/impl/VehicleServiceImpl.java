@@ -25,7 +25,17 @@ public class VehicleServiceImpl implements VehicleService {
 	private VehicleDao vehicleDao;
 
 	@Override
-	@Transactional
+	public Vehicle getVehicle(long vehicleId) throws VehicleServiceException {
+		Vehicle vehicle = null;
+		try {
+			vehicle = this.vehicleDao.getVehicle(vehicleId);
+		} catch (VehicleDaoException e) {
+			throw new VehicleServiceException(e);
+		}
+		return vehicle;
+	}
+
+	@Override
 	public Vehicle getVehicleByNameAndUser(String vehicleName, long userId) throws VehicleServiceException {
 		Vehicle vehicle = null;
 		VehicleInputData inputData = new VehicleInputData();
@@ -45,6 +55,22 @@ public class VehicleServiceImpl implements VehicleService {
 			throw new VehicleServiceException(e);
 		}
 		return vehicle;
+	}
+
+	@Override
+	public List<Vehicle> getVehiclesByUser(User user) throws VehicleServiceException {
+		List<Vehicle> vehicles = null;
+
+		VehicleInputData inputData = new VehicleInputData();
+		inputData.setUser(user);
+
+		try {
+			vehicles = this.vehicleDao.getVehicles(inputData);
+		} catch (VehicleDaoException e) {
+			throw new VehicleServiceException(e);
+		}
+
+		return vehicles;
 	}
 
 	public void setVehicleDao(VehicleDao vehicleDao) {
