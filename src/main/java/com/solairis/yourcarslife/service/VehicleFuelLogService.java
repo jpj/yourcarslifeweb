@@ -18,6 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 public interface VehicleFuelLogService {
 
 	@Transactional
-	public List<VehicleFuelLog> getVehicleFuelLogsByVehicle(Vehicle vehicle, int pageNumber) throws VehicleFuelLogServiceException;
+	public List<VehicleFuelLog> getVehicleFuelLogsByVehicle(Vehicle vehicle, int pageNumber, int maxResults) throws VehicleFuelLogServiceException;
 
 }

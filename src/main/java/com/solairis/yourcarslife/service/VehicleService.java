@@ -23,4 +23,6 @@ public interface VehicleService {
 
 	public List<Vehicle> getVehiclesByUser(User user) throws VehicleServiceException;
 
+	public Vehicle getVehicleByUserAndVehicleId(User user, long vehicleId) throws VehicleServiceException;
+
 }

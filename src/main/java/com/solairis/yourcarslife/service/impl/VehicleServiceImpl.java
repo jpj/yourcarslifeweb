@@ -25,6 +25,7 @@ public class VehicleServiceImpl implements VehicleService {
 	private VehicleDao vehicleDao;
 
 	@Override
+	@Transactional
 	public Vehicle getVehicle(long vehicleId) throws VehicleServiceException {
 		Vehicle vehicle = null;
 		try {
@@ -36,15 +37,13 @@ public class VehicleServiceImpl implements VehicleService {
 	}
 
 	@Override
+	@Transactional
 	public Vehicle getVehicleByNameAndUser(String vehicleName, long userId) throws VehicleServiceException {
 		Vehicle vehicle = null;
 		VehicleInputData inputData = new VehicleInputData();
 		inputData.setName(vehicleName);
 
-		User user = new User();
-		user.setUserId(userId);
-
-		inputData.setUser(user);
+		inputData.setUserId(userId);
 
 		try {
 			List<Vehicle> vehicles = this.vehicleDao.getVehicles(inputData);
@@ -58,11 +57,12 @@ public class VehicleServiceImpl implements VehicleService {
 	}
 
 	@Override
+	@Transactional
 	public List<Vehicle> getVehiclesByUser(User user) throws VehicleServiceException {
 		List<Vehicle> vehicles = null;
 
 		VehicleInputData inputData = new VehicleInputData();
-		inputData.setUser(user);
+		inputData.setUserId(user.getUserId());
 
 		try {
 			vehicles = this.vehicleDao.getVehicles(inputData);
@@ -71,6 +71,27 @@ public class VehicleServiceImpl implements VehicleService {
 		}
 
 		return vehicles;
+	}
+
+	@Override
+	@Transactional
+	public Vehicle getVehicleByUserAndVehicleId(User user, long vehicleId) throws VehicleServiceException {
+		Vehicle vehicle = null;
+		VehicleInputData inputData = new VehicleInputData();
+		inputData.setUserId(user.getUserId());
+		inputData.setVehicleId(vehicleId);
+
+		try {
+			List<Vehicle> vehicles = this.vehicleDao.getVehicles(inputData);
+
+			if (vehicles.size() == 1) {
+				vehicle = vehicles.get(0);
+			}
+		} catch (VehicleDaoException e) {
+			throw new VehicleServiceException(e);
+		}
+
+		return vehicle;
 	}
 
 	public void setVehicleDao(VehicleDao vehicleDao) {
