@@ -17,13 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public interface VehicleService {
 
-	@Transactional
 	public Vehicle getVehicle(long vehicleId) throws VehicleServiceException;
 
-	@Transactional
 	public Vehicle getVehicleByNameAndUser(String vehicleName, long userId) throws VehicleServiceException;
 
-	@Transactional
 	public List<Vehicle> getVehiclesByUser(User user) throws VehicleServiceException;
 
 }
