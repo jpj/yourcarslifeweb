@@ -15,7 +15,7 @@ public class VehicleServiceException extends ServiceException {
 		super(message);
 	}
 
-	public VehicleServiceException(Exception e) {
+	public VehicleServiceException(Throwable e) {
 		super(e);
 	}
 

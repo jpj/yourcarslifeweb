@@ -9,13 +9,13 @@ package com.solairis.yourcarslife.service.exception;
  *
  * @author josh
  */
-public class ServiceException extends RuntimeException {
+public class UserServiceException extends ServiceException {
 
-	public ServiceException(String message) {
+	public UserServiceException(String message) {
 		super(message);
 	}
 
-	public ServiceException(Throwable e) {
+	public UserServiceException(Throwable e) {
 		super(e);
 	}
 

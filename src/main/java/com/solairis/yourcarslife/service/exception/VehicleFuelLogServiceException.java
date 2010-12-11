@@ -15,7 +15,7 @@ public class VehicleFuelLogServiceException extends ServiceException {
 		super(message);
 	}
 
-	public VehicleFuelLogServiceException(Exception e) {
+	public VehicleFuelLogServiceException(Throwable e) {
 		super(e);
 	}
 
