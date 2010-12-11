@@ -10,6 +10,7 @@ import com.solairis.yourcarslife.data.domain.User;
 import com.solairis.yourcarslife.data.exception.UserDaoException;
 import com.solairis.yourcarslife.service.UserService;
 import com.solairis.yourcarslife.service.exception.UserServiceException;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -20,6 +21,7 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 
 	@Override
+	@Transactional
 	public User getUser(long userId) throws UserServiceException {
 		User user = null;
 
