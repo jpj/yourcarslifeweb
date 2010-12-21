@@ -9,7 +9,6 @@ import com.solairis.yourcarslife.data.domain.Vehicle;
 import com.solairis.yourcarslife.data.domain.VehicleFuelLog;
 import com.solairis.yourcarslife.service.exception.VehicleFuelLogServiceException;
 import java.util.List;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -17,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public interface VehicleFuelLogService {
 
-	@Transactional
 	public List<VehicleFuelLog> getVehicleFuelLogsByVehicle(Vehicle vehicle, int pageNumber, int maxResults) throws VehicleFuelLogServiceException;
+	public int getVehicleFuelLogCountByVehicle(long vehicleId) throws VehicleFuelLogServiceException;
 
 }

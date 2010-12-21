@@ -46,6 +46,22 @@ public class VehicleFuelLogServiceImpl implements VehicleFuelLogService {
 		return vehicleFuelLogs;
 	}
 
+	@Override
+	@Transactional
+	public int getVehicleFuelLogCountByVehicle(long vehicleId) throws VehicleFuelLogServiceException {
+		int count = 0;
+
+		VehicleFuelLogInputData inputData = new VehicleFuelLogInputData();
+		inputData.setVehicleId(vehicleId);
+		
+		try {
+			count = this.vehicleFuelLogDao.getVehicleFuelLogCount(inputData);
+		} catch (VehicleLogDaoException e) {
+			throw new VehicleFuelLogServiceException(e);
+		}
+		return count;
+	}
+
 	public void setVehicleFuelLogDao(VehicleFuelLogDao vehicleFuelLogDao) {
 		this.vehicleFuelLogDao = vehicleFuelLogDao;
 	}
