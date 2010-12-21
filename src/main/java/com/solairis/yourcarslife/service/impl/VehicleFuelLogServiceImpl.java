@@ -22,15 +22,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class VehicleFuelLogServiceImpl implements VehicleFuelLogService {
 
 	private VehicleFuelLogDao vehicleFuelLogDao;
-	private Integer defaultMaxResults;
-	private Integer maxResultsUpperLimit;
 
 	@Override
 	@Transactional
 	public List<VehicleFuelLog> getVehicleFuelLogsByVehicle(Vehicle vehicle, int pageNumber, int maxResults) throws VehicleFuelLogServiceException {
 		List<VehicleFuelLog> vehicleFuelLogs = null;
-		maxResults = maxResults < 1 ? this.defaultMaxResults.intValue() : maxResults;
-		maxResults = maxResults > this.maxResultsUpperLimit.intValue() ? this.maxResultsUpperLimit.intValue() : maxResults;
 
 		VehicleFuelLogInputData inputData = new VehicleFuelLogInputData();
 		inputData.setVehicleId(vehicle.getVehicleId());
@@ -64,14 +60,6 @@ public class VehicleFuelLogServiceImpl implements VehicleFuelLogService {
 
 	public void setVehicleFuelLogDao(VehicleFuelLogDao vehicleFuelLogDao) {
 		this.vehicleFuelLogDao = vehicleFuelLogDao;
-	}
-
-	public void setDefaultMaxResults(Integer defaultMaxResults) {
-		this.defaultMaxResults = defaultMaxResults;
-	}
-
-	public void setMaxResultsUpperLimit(Integer maxResultsUpperLimit) {
-		this.maxResultsUpperLimit = maxResultsUpperLimit;
 	}
 
 }
