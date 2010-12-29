@@ -25,11 +25,12 @@ public class VehicleFuelLogServiceImpl implements VehicleFuelLogService {
 
 	@Override
 	@Transactional
-	public List<VehicleFuelLog> getVehicleFuelLogsByVehicle(Vehicle vehicle, int pageNumber, int maxResults) throws VehicleFuelLogServiceException {
+	public List<VehicleFuelLog> getVehicleFuelLogsByVehicle(long vehicleId, long vehicleFuelLogId, int pageNumber, int maxResults) throws VehicleFuelLogServiceException {
 		List<VehicleFuelLog> vehicleFuelLogs = null;
 
 		VehicleFuelLogInputData inputData = new VehicleFuelLogInputData();
-		inputData.setVehicleId(vehicle.getVehicleId());
+		inputData.setVehicleId(vehicleId);
+		inputData.setVehicleFuelLogId(vehicleFuelLogId);
 		inputData.setMaxRecords(maxResults);
 		inputData.setStartRecord(maxResults * (pageNumber - 1));
 

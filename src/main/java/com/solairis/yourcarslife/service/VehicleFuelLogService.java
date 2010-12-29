@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface VehicleFuelLogService {
 
-	public List<VehicleFuelLog> getVehicleFuelLogsByVehicle(Vehicle vehicle, int pageNumber, int maxResults) throws VehicleFuelLogServiceException;
+	public List<VehicleFuelLog> getVehicleFuelLogsByVehicle(long vehicleId, long vehicleFuelLogId, int pageNumber, int maxResults) throws VehicleFuelLogServiceException;
 	public int getVehicleFuelLogCountByVehicle(long vehicleId) throws VehicleFuelLogServiceException;
 
 }
