@@ -33,6 +33,7 @@ public class VehicleFuelLogServiceImpl implements VehicleFuelLogService {
 		inputData.setVehicleFuelLogId(vehicleFuelLogId);
 		inputData.setMaxRecords(maxResults);
 		inputData.setStartRecord(maxResults * (pageNumber - 1));
+		inputData.setActive(true);
 
 		try {
 			vehicleFuelLogs = this.vehicleFuelLogDao.getVehicleFuelLogs(inputData);
@@ -50,6 +51,7 @@ public class VehicleFuelLogServiceImpl implements VehicleFuelLogService {
 
 		VehicleFuelLogInputData inputData = new VehicleFuelLogInputData();
 		inputData.setVehicleId(vehicleId);
+		inputData.setActive(true);
 		
 		try {
 			count = this.vehicleFuelLogDao.getVehicleFuelLogCount(inputData);
