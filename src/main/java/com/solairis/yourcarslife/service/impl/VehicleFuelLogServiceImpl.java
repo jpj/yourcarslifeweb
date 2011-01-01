@@ -24,6 +24,18 @@ public class VehicleFuelLogServiceImpl implements VehicleFuelLogService {
 
 	@Override
 	@Transactional
+	public VehicleFuelLog getVehicleFuelLog(long vehicleFuelLogId) throws VehicleFuelLogServiceException {
+		VehicleFuelLog vehicleFuelLog = null;
+		try {
+			vehicleFuelLog = this.vehicleFuelLogDao.getVehicleFuelLog(vehicleFuelLogId);
+		} catch (VehicleLogDaoException e) {
+			throw new VehicleFuelLogServiceException(e);
+		}
+		return vehicleFuelLog;
+	}
+
+	@Override
+	@Transactional
 	public void saveVehicleFuelLog(VehicleFuelLog vehicleFuelLog) throws VehicleFuelLogServiceException {
 		try {
 			this.vehicleFuelLogDao.saveVehicleFuelLog(vehicleFuelLog);

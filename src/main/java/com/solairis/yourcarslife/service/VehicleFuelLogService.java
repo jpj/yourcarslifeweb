@@ -19,5 +19,6 @@ public interface VehicleFuelLogService {
 	public List<VehicleFuelLog> getVehicleFuelLogsByVehicle(long vehicleId, long vehicleFuelLogId, int pageNumber, int maxResults) throws VehicleFuelLogServiceException;
 	public int getVehicleFuelLogCountByVehicle(long vehicleId) throws VehicleFuelLogServiceException;
 	public void saveVehicleFuelLog(VehicleFuelLog vehicleFuelLog) throws VehicleFuelLogServiceException;
+	public VehicleFuelLog getVehicleFuelLog(long vehicleFuelLogId) throws VehicleFuelLogServiceException;
 
 }
