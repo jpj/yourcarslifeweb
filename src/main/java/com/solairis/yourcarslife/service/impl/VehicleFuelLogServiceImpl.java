@@ -6,7 +6,6 @@
 package com.solairis.yourcarslife.service.impl;
 
 import com.solairis.yourcarslife.data.dao.VehicleFuelLogDao;
-import com.solairis.yourcarslife.data.domain.Vehicle;
 import com.solairis.yourcarslife.data.domain.VehicleFuelLog;
 import com.solairis.yourcarslife.data.exception.VehicleLogDaoException;
 import com.solairis.yourcarslife.data.input.VehicleFuelLogInputData;
@@ -22,6 +21,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class VehicleFuelLogServiceImpl implements VehicleFuelLogService {
 
 	private VehicleFuelLogDao vehicleFuelLogDao;
+
+	@Override
+	@Transactional
+	public void saveVehicleFuelLog(VehicleFuelLog vehicleFuelLog) throws VehicleFuelLogServiceException {
+		try {
+			this.vehicleFuelLogDao.saveVehicleFuelLog(vehicleFuelLog);
+		} catch (VehicleLogDaoException e) {
+			throw new VehicleFuelLogServiceException(e);
+		}
+	}
 
 	@Override
 	@Transactional
