@@ -34,6 +34,17 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	@Override
+	public User getUser(String login) throws UserServiceException {
+		User user = null;
+		try {
+			user = this.userDao.getUser(login);
+		} catch (UserDaoException e) {
+			throw new UserServiceException(e);
+		}
+		return user;
+	}
+
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}

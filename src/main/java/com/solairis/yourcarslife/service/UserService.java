@@ -15,5 +15,6 @@ import com.solairis.yourcarslife.service.exception.UserServiceException;
 public interface UserService {
 
 	public User getUser(long userId) throws UserServiceException;
+	public User getUser(String login) throws UserServiceException;
 
 }
