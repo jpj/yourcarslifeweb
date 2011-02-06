@@ -35,6 +35,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public User getUser(String login) throws UserServiceException {
 		User user = null;
 		try {
