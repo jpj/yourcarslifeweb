@@ -16,5 +16,6 @@ public interface UserService {
 
 	public User getUser(long userId) throws UserServiceException;
 	public User getUser(String login) throws UserServiceException;
+	public void createUser(User user, String password) throws UserServiceException;
 
 }
