@@ -2,14 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.solairis.yourcarslife.service.impl;
 
 import com.solairis.yourcarslife.data.dao.UserDao;
 import com.solairis.yourcarslife.data.domain.User;
+import com.solairis.yourcarslife.data.domain.UserRole;
 import com.solairis.yourcarslife.data.exception.UserDaoException;
 import com.solairis.yourcarslife.service.UserService;
 import com.solairis.yourcarslife.service.exception.UserServiceException;
+import com.solairis.yourcarslife.util.YCLConstants;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,9 +53,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public void createUser(User user, String password) throws UserServiceException {
+
 		try {
 			user.setPassword(this.passwordEncoder.encodePassword(password, null));
 			this.userDao.saveUser(user);
+			UserRole userRole = new UserRole();
+			userRole.setRoleKey( YCLConstants.ROLE_USER );
+			userRole.setUser(user);
+			user.getUserRoles().add(userRole);
 		} catch (DataAccessException e) {
 			throw new UserServiceException(e);
 		} catch (UserDaoException e) {
@@ -69,5 +75,4 @@ public class UserServiceImpl implements UserService {
 	public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
 		this.passwordEncoder = passwordEncoder;
 	}
-
 }
