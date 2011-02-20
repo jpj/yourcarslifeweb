@@ -25,4 +25,6 @@ public interface VehicleService {
 
 	public Vehicle getVehicleByUserAndVehicleId(User user, long vehicleId) throws VehicleServiceException;
 
+	public void saveVehicle(Vehicle vehicle) throws VehicleServiceException;
+
 }

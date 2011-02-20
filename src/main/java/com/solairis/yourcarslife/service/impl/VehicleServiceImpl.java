@@ -93,6 +93,16 @@ public class VehicleServiceImpl implements VehicleService {
 		return vehicle;
 	}
 
+	@Override
+	@Transactional
+	public void saveVehicle(Vehicle vehicle) throws VehicleServiceException {
+		try {
+			this.vehicleDao.saveVehicle(vehicle);
+		} catch (VehicleDaoException e) {
+			throw new VehicleServiceException(e);
+		}
+	}
+
 	public void setVehicleDao(VehicleDao vehicleDao) {
 		this.vehicleDao = vehicleDao;
 	}
